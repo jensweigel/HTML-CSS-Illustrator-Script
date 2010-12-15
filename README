@@ -1,0 +1,9 @@
+Use Illustrator to export HTML and CSS in one JavaScript action.
+
+Functions
+* Layername will be Tagname body -> <bod></body>
+* Layers can be ordered in sublayers
+* Layer named img generate an empty img tag and content will be ignored 
+* Path with the name background are used to generate CSS with background and width information
+* Lines with border-[top|bottom|left|right] are used for CSS border attribut
+* Every paragraph amd character style will be converted to CSS
