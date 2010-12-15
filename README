@@ -2,6 +2,16 @@ Use Illustrator to export HTML and CSS in one JavaScript action.
 
 This is a very early verison. So im not a programmer. I Hope some can help me with this idea. Many things are not implemented yet.
 
+How it works
+1. Download the jsx file
+2. Open Illustrator
+3. Prepare you file. Use Layaers for the Tags. Make one main Layer called body
+4. Save your file (just for getting sure. Illustartor or my script arent very stable
+5. Go do folder where the AI is saved and generate a subfilder fileadmin and inseide this a folder called css (sorry I use Typo3 fill be fixed in futur release)
+6. Chose File > Script > Other Script ... and choose the saved tohtmlcss.jsx file
+7. Chose your Doctype and Language (maybe this isent your favor, so chamge it send me wishes ;-)
+8. In the folder of your saved Ai you will find a index.html and in the subfolder fileadmin/css style.css 
+
 Functions
 * Layername will be Tagname body -> <bod></body>
 * tagname.something -> <tagname class="something"></tagname>
@@ -14,6 +24,9 @@ Functions
 * Every paragraph amd character style will be converted to CSS
 
 ToDo
+* naming own folder for css
+* naming filename for index.html and style.css
+* Optional creating these folders
 * Export caracter format
 * slice img layers automatical
 * generate true css margin and padding
