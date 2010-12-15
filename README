@@ -1,9 +1,27 @@
 Use Illustrator to export HTML and CSS in one JavaScript action.
 
+This is a very early verison. So im not a programmer. I Hope some can help me with this idea. Many things are not implemented yet.
+
 Functions
 * Layername will be Tagname body -> <bod></body>
+* tagname.something -> <tagname class="something"></tagname>
+* tagname#something -> <tagname id="something"></tagname>
+* Cobination of the both are also possible
 * Layers can be ordered in sublayers
 * Layer named img generate an empty img tag and content will be ignored 
 * Path with the name background are used to generate CSS with background and width information
 * Lines with border-[top|bottom|left|right] are used for CSS border attribut
 * Every paragraph amd character style will be converted to CSS
+
+ToDo
+* Export caracter format
+* slice img layers automatical
+* generate true css margin and padding
+* generate buttons
+* generate inputs
+* Shadow/inner Shadow
+* Hover/active
+* Problems with illustrator effects
+* export TextFrames with Inline Styles
+* Better calculating the width
+* CSS Attribut width without background
