@@ -19,6 +19,7 @@ SOLVED
 2010-11-30 CSS borders
 2010-12-01 Different HTML Doctypes
 2012-08-24 Some bugfixes, changes the style.css behavior, so there is no need to create any folder
+2012-10-14 Bugfixes, cssme() function works correct
 
 */
 var doc = app.activeDocument;
@@ -123,7 +124,6 @@ for (i=0; i<doc.layers.length; i++){
 	if (doc.layers[i].visible == true) {
 		//alert (doc.layers[i].name);
 		myHTML.write(tagme (doc.layers[i],0));
-		cssme();
 	}
 }
 if (doc.layers[0].name != "body") myHTML.writeln("</body>");
@@ -153,6 +153,7 @@ for (z=0; z<doc.characterStyles.length; z++) {
 	}
 }
 */
+cssme();
 var myCSS = new File (mypath + "/style.css");
 myCSS.open("w:");
 var e;
@@ -289,7 +290,7 @@ function paragraphstocss () {
 	for (j=0;j<doc.paragraphStyles.length;j++) {
 		aname = String(doc.paragraphStyles[j].name);
 		//alert(doc.paragraphStyles[j].paragraphAttributes.hyphenation);
-		/*
+		
 		if (aname.substring(0,1) != "[" ) {
 			if (!isArray(css[aname]))  css[aname] = new Array();
 			css[aname]["font"] = "";
@@ -300,24 +301,22 @@ function paragraphstocss () {
 				"#" + hexathis(doc.paragraphStyles[j].characterAttributes.fillColor.red.toString(16)) +
 				hexathis(doc.paragraphStyles[j].characterAttributes.fillColor.green.toString(16)) +
 				hexathis(doc.paragraphStyles[j].characterAttributes.fillColor.blue.toString(16));
-		}*/
+		}
 	}
 }
 
 function cssme () {
 	var e = "";
-	
 	for (j=0;j<doc.textFrames.length;j++) {
 		if (doc.textFrames[j].hidden == false) {
-			if (doc.textFrames[j].parent.name != "img" && doc.textFrames[j].name != "") {
-				//alert (doc.textFrames[j].name);
+			if (doc.textFrames[j].parent.name != "img" || doc.textFrames[j].name != "") {
 				aname = String(doc.textFrames[j].story.textRange.paragraphStyles[0].name);
 				if (aname.substring(0,1) != "[" ) {
 					if (!isArray(css[aname]))  css[aname] = new Array();
-					css[aname]["font"] = capsulate(doc.textFrames[j].paragraphs[0].characterAttributes.textFont.family) + " " +
-						doc.textFrames[j].paragraphs[0].characterAttributes.size + "/" +
+					css[aname]["font"] = doc.textFrames[j].paragraphs[0].characterAttributes.size + "/" +
 						doc.textFrames[j].paragraphs[0].characterAttributes.leading + " " +
-						"#" + hexathis(doc.textFrames[j].paragraphs[0].characterAttributes.fillColor.red.toString(16)) +
+						capsulate(doc.textFrames[j].paragraphs[0].characterAttributes.textFont.family);
+					css[aname]["color"] = "#" + hexathis(doc.textFrames[j].paragraphs[0].characterAttributes.fillColor.red.toString(16)) +
 						hexathis(doc.textFrames[j].paragraphs[0].characterAttributes.fillColor.green.toString(16)) +
 						hexathis(doc.textFrames[j].paragraphs[0].characterAttributes.fillColor.blue.toString(16));
 				}
